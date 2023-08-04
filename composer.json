@@ -2,14 +2,18 @@
     "require": {
         "amazon-php/sp-api-sdk": "^4.0",
         "equip/assist": "^1.6.0",
-        "equip/framework": "^2.1",
+        "equip/command": "^2.0",
         "equip/data": "^2.4",
+        "equip/framework": "^2.1",
         "josegonzalez/dotenv": "^2.0",
+        "kriswallsmith/buzz": "^1.2",
         "league/plates": "^3.3",
+        "monolog/monolog": "^1.19",
         "zendframework/zend-diactoros": "^1.0.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
+        "nyholm/psr7": "^1.4",
         "ext-json": "*"
     },
     "autoload": {
