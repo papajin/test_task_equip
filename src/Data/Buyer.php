@@ -3,9 +3,10 @@
 namespace App\Data;
 
 use App\Contracts\BuyerInterface;
+use Equip\Data\EntityInterface;
 use Equip\Data\Traits\EntityTrait;
 
-class Buyer implements BuyerInterface
+class Buyer implements BuyerInterface, EntityInterface
 {
     use EntityTrait, ArrayAccess;
 
