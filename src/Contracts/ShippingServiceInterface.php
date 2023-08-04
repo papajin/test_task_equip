@@ -12,7 +12,7 @@ interface ShippingServiceInterface
      * and will return the tracking number as string for this order.
      * If operation cannot be performed please throw exception with error message
      * 
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     public function ship(AbstractOrder $order, BuyerInterface $buyer): string;
 }
