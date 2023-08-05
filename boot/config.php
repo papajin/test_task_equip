@@ -11,4 +11,6 @@ return [
     Equip\Configuration\RelayConfiguration::class,
     Equip\Configuration\WhoopsConfiguration::class,
     App\Configuration\CurlConfiguration::class,
+    App\Configuration\SellingPartnerSDKConfiguration::class,
+    App\Configuration\Psr17FactoryConfiguration::class,
 ];
