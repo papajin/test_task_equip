@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace App\Classes;
 
 use function Equip\Arr\exists;
 use function Equip\Arr\to_array;

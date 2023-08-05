@@ -8,7 +8,7 @@
 
 namespace App\Configuration;
 
-use App\Data\Helper;
+use App\Classes\Helper;
 use Auryn\ConfigException;
 use Auryn\Injector;
 use Equip\Configuration\ConfigurationInterface;
