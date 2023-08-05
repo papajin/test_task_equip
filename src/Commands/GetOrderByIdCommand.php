@@ -8,11 +8,10 @@ class GetOrderByIdCommand extends SellingPartnerCommand
 
     public function requiredOptions()
     {
-        return [
-            'region',
-            'marketplaceId',
-            'sellerOrderId'
-        ];
+        return array_merge(
+            [ 'marketplaceId', 'sellerOrderId' ],
+            parent::requiredOptions()
+        );
     }
 
     /**

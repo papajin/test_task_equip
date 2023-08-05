@@ -13,9 +13,7 @@ abstract class SellingPartnerCommand extends AbstractCommand
 
     public function requiredOptions()
     {
-        return [
-            'accessToken',
-        ];
+        return [ 'accessToken', 'region' ];
     }
 
     public function __construct( SellingPartnerSDK $sellingPartnerSDK )
