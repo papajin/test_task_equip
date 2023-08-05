@@ -2,46 +2,86 @@
 
 namespace App\Commands;
 
+
+use AmazonPHP\SellingPartner\Exception\ApiException;
+use AmazonPHP\SellingPartner\Exception\InvalidArgumentException;
+use App\Classes\SellingPartner\Model\Orders\ConfirmShipmentRequest;
 use App\Contracts\BuyerInterface;
 use App\Contracts\ShippingServiceInterface;
 use App\Data\AbstractOrder;
-use Equip\Command\AbstractCommand;
+use function Equip\Arr\get;
 
-class ShippingServiceCommand extends AbstractCommand implements ShippingServiceInterface
+class ShippingServiceCommand extends SellingPartnerCommand implements ShippingServiceInterface
 {
-    public function __construct()
-    {
-        //TODO: Implement __construct() method or delete.
-    }
-
     public function requiredOptions()
     {
-        return [
-            'order',
-            'buyer',
-        ];
+        return array_merge(
+            [ 'payload', 'order', 'buyer' ],
+            parent::requiredOptions()
+        );
     }
 
+    /**
+     * @throws ApiException
+     * @throws InvalidArgumentException
+     */
     public function execute()
     {
-        // TODO: Implement execute() method.
-        return $this->getOrder()
-                    ->withGetFulfillmentOrderCommand( $this->getFulfillmentOrderCommand() );
+        return $this->sellingPartnerSDK->orders()
+                                       ->confirmShipment(
+                                           $this->getAccessToken(),
+                                           $this->options()[ 'region' ],
+                                           $this->getAmazonOrderId(),
+                                           $this->options()[ 'payload' ]
+                                       );
     }
 
+    /**
+     * @throws \RuntimeException
+     */
     public function ship(AbstractOrder $order, BuyerInterface $buyer): string
     {
-        $result = $this->addOptions([
-            'order' => $order,
-            'buyer' => $buyer,
-        ])
-                       ->execute();
+        /**
+         * This is to comply with the interface contract.
+         * Remove try-catching if you don't need it here.
+         */
+        try {
+            $this->addOptions([
+                'order' => $order,
+                'buyer' => $buyer,
+            ])
+                 ->execute();
+        } catch( \Exception $e ) {
+            throw $e instanceof \RuntimeException
+                ? $e
+                : new \RuntimeException( $e->getMessage() );
+        }
 
-        return static::extractTrackingNumber( $result );
+        return $this->extractTrackingNumberFromPayload();
     }
 
-    public static function extractTrackingNumber( $result )
+    private function getAmazonOrderId(): string
     {
-        return $result->getTrackingNumber();
+        if(
+            $this->options()['order'] instanceof AbstractOrder
+            AND $id = get( (array) $this->options()[ 'order' ]->data, 'amazon_order_id' )
+        ) {
+            return $id;
+        }
+
+        throw new \InvalidArgumentException( 'Amazon Order Id is missing.' );
+    }
+
+    private function getPayload(): ConfirmShipmentRequest
+    {
+        if( $this->options()['payload'] instanceof ConfirmShipmentRequest )
+            return $this->options()['payload'];
+
+        throw new \InvalidArgumentException( 'Payload is required and must be an instance of ConfirmShipmentRequest' );
+    }
+
+    private function extractTrackingNumberFromPayload()
+    {
+        return $this->options()[ 'payload' ]->getPackageDetails()[ 'trackingNumber' ] ?? '';
     }
 }

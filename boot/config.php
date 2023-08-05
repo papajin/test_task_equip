@@ -13,4 +13,5 @@ return [
     App\Configuration\CurlConfiguration::class,
     App\Configuration\SellingPartnerSDKConfiguration::class,
     App\Configuration\Psr17FactoryConfiguration::class,
+    App\Configuration\ShippingServiceCommandConfiguration::class,
 ];
