@@ -3,7 +3,7 @@
 return [
     Equip\Configuration\AurynConfiguration::class,
     Equip\Configuration\DiactorosConfiguration::class,
-    Equip\Configuration\MonologConfiguration::class,
+    App\Configuration\MonologConfiguration::class,
     Equip\Configuration\EnvConfiguration::class,
     Equip\Configuration\PayloadConfiguration::class,
     App\Configuration\PlatesConfiguration::class,
