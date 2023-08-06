@@ -32,7 +32,7 @@ class ShippingServiceCommand extends SellingPartnerCommand implements ShippingSe
                                            $this->getAccessToken(),
                                            $this->options()[ 'region' ],
                                            $this->getAmazonOrderId(),
-                                           $this->options()[ 'payload' ]
+                                           $this->getPayload()
                                        );
     }
 
@@ -46,6 +46,8 @@ class ShippingServiceCommand extends SellingPartnerCommand implements ShippingSe
          * Remove try-catching if you don't mean to convert all exceptions to RuntimeException.
          */
         try {
+            $order->load();
+
             $this->addOptions([
                 'order' => $order,
                 'buyer' => $buyer,
