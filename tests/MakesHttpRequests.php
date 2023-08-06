@@ -34,7 +34,7 @@ trait MakesHttpRequests
         return $this->call( 'GET', $uri, $body, $headers );
     }
 
-    protected function post( string $uri, $body = '', array $headers = [] ): ResponseInterface
+    protected function post( string $uri, $body = [], array $headers = [] ): ResponseInterface
     {
         return $this->call( 'POST', $uri, $body, $headers );
     }
