@@ -4,12 +4,12 @@ namespace Tests\Unit;
 
 
 use App\Contracts\BuyerInterface;
-use App\Data\Buyer;
 use PHPUnit\Framework\TestCase;
+use Tests\MocksBuyer;
 
 class BuyerTest extends TestCase
 {
-    const BUYER_ID = 29664;
+    use MocksBuyer;
 
     /**
      * A basic test example.
@@ -21,20 +21,6 @@ class BuyerTest extends TestCase
 
     public function test_buyer_has_id(): void
     {
-        $this->assertEquals( self::BUYER_ID, $this->getBuyerMock()->id );
-    }
-
-    private function getBuyerMock()
-    {
-        static $buyer;
-
-        if( is_null( $buyer ) ) {
-            $buyer = new Buyer( array_merge(
-                    ['id' => self::BUYER_ID ],
-                    json_decode( file_get_contents( ROOT_PATH . 'mock/buyer.29664.json' ), true ) )
-            );
-        }
-
-        return $buyer;
+        $this->assertEquals( $this->buyerId, $this->getBuyerMock()->id );
     }
 }
