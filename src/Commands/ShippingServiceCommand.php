@@ -43,7 +43,7 @@ class ShippingServiceCommand extends SellingPartnerCommand implements ShippingSe
     {
         /**
          * This is to comply with the interface contract.
-         * Remove try-catching if you don't need it here.
+         * Remove try-catching if you don't mean to convert all exceptions to RuntimeException.
          */
         try {
             $this->addOptions([
