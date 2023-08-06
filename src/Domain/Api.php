@@ -57,26 +57,36 @@ class Api extends Domain
      */
     public function __invoke(array $input)
     {
-        $this->setCredentials( $input );
+        try {
+            $this->setCredentials( $input );
 
-        $order = $this->buildOrder( $input );
+            $order = $this->buildOrder( $input );
 
-        $amazonOrder = $this->buildAmazonOrder( $input, $order );
+            $amazonOrder = $this->buildAmazonOrder( $input, $order );
 
-        $this->shippingServiceCommand = $this->shippingServiceCommand->withOptions([
-            'accessToken' => $this->getAccessToken($input['refreshToken']),
-            'region'      => $this->getRegion( $input ),
-            'payload'     => $this->getPayload( $input )
-        ]);
+            $this->shippingServiceCommand = $this->shippingServiceCommand->withOptions([
+                'accessToken' => $this->getAccessToken($input['refreshToken']),
+                'region'      => $this->getRegion( $input ),
+                'payload'     => $this->getPayload( $input )
+            ]);
 
-        return $this->payload
-            ->withStatus( Status::STATUS_OK )
-            ->withOutput([
+            $status = Status::STATUS_OK;
+            $output = [
                 'trackingNumber' => $this->shippingServiceCommand->ship(
                     $amazonOrder,
                     $this->getBuyer( $input )
                 ),
-            ]);
+            ];
+        } catch (\Throwable $e) {
+            $status = Status::STATUS_BAD_REQUEST;
+            $output = [
+                'message' => $e->getMessage(),
+            ];
+        }
+
+        return $this->payload
+            ->withStatus( $status )
+            ->withOutput( $output );
     }
 
     private function setCredentials( array $input )
