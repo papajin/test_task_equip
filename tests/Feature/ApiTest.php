@@ -22,7 +22,16 @@ class ApiTest extends BaseTest
         $this->markTestSkipped( 'Provide all required parameters for the API call and comment this line.' );
 
         $response = $this->post( '/api', [
-            //TODO: input here
+            'trackingNumber' => 'greag6234',
+            'carrierCode'    => 'USPS',
+            'order_id'       => 16400,
+            'id'             => 16400,
+            'email'          => 'buyer@test.com',
+            'clientId'       => 'lwaClientId',
+            'clientSecret'   => 'lwaClientIdSecret',
+            'refreshToken'   => 'seller_oauth_refresh_token',
+            'accessKey'      => 'awsAccessKey',
+            'secretKey'      => 'awsSecretKey',
         ] );
 
         $this->assertEquals( 200, $response->getStatusCode() );
