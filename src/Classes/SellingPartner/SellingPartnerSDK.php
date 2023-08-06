@@ -14,6 +14,9 @@ use Psr\Http\Message\StreamFactoryInterface;
 use AmazonPHP\SellingPartner\Configuration;
 use Psr\Log\LoggerInterface;
 
+/**
+ * @method \AmazonPHP\SellingPartner\OAuth oAuth()
+ */
 class SellingPartnerSDK
 {
     private ClientInterface $httpClient;
@@ -63,6 +66,17 @@ class SellingPartnerSDK
     public function orders() : OrdersSDKInterface
     {
         return $this->instantiateSDK( OrdersSDK::class );
+    }
+
+    public function withConfiguration( Configuration $configuration ) : self
+    {
+        return new self(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->streamFactory,
+            $configuration,
+            $this->logger
+        );
     }
 
     public function __call($name, $arguments)
