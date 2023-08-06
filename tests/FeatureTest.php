@@ -7,7 +7,7 @@ use Auryn\Injector;
 use Equip\Configuration\ConfigurationSet;
 use PHPUnit\Framework\TestCase;
 
-class FeatureTest extends TestCase
+abstract class FeatureTest extends TestCase
 {
     /**
      * @throws InjectionException
