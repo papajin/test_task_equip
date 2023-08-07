@@ -34,15 +34,14 @@ class GetOrderByIdCommandTest extends BaseTest
             'accessToken' => new \AmazonPHP\SellingPartner\AccessToken('dfg', 'rgae','rgag', 0, 'sfsd'),
         ] )->execute();
 
-        $this->assertIsArray( $order );
-        $this->assertArrayHasKey( 'AmazonOrderId', $order );
+        $this->assertInstanceOf( \AmazonPHP\SellingPartner\Model\Orders\Order::class, $order );
     }
 
     private function makeOrdersData()
     {
         return new \AmazonPHP\SellingPartner\Model\Orders\GetOrdersResponse( [
             'payload' => new \AmazonPHP\SellingPartner\Model\Orders\OrdersList([
-                'orders' => [[
+                'orders' => [ new \AmazonPHP\SellingPartner\Model\Orders\Order([
                 'AmazonOrderId' => '123-1234567-1234567',
                 'SellerOrderId' => 16400,
                 'PurchaseDate' => '2021-01-01T00:00:00+00:00',
@@ -77,7 +76,7 @@ class GetOrderByIdCommandTest extends BaseTest
                 'PaymentMethod' => 'Other',
                 'PaymentMethodDetails' => 'Standard',
                 'MarketplaceId' => 'ATVPDKIKX0DER',
-            ]]]),
+            ])]]),
             'errors' => [],
         ]);
     }
