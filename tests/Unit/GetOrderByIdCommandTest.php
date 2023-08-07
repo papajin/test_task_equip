@@ -15,11 +15,10 @@ class GetOrderByIdCommandTest extends BaseTest
     public function test_execute()
     {
         $ordersSDK = $this->createStub( OrdersSDK::class );
-        $ordersSDK->method( 'getOrders' )
-                  ->willReturn( $this->makeOrdersData() );
 
         $ordersSDK->expects( $this->once() )
-                  ->method( 'getOrders' );
+                  ->method( 'getOrders' )
+                  ->willReturn( $this->makeOrdersData() );
 
         $sdk = $this->createStub( SellingPartnerSDK::class );
 
