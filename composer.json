@@ -1,5 +1,5 @@
 {
-    "name": "amazon-test-task-equip",
+    "name": "papajin/amazon-test-task-equip",
     "description": "Test Task that uses Amazon SP API",
     "require": {
         "php": "^7.4",
