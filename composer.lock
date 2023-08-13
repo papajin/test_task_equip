@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "222c5c9c0ddc83329ca16c0faccfbc1e",
+    "content-hash": "2976f792b0402d8427caafa22be68fc8",
     "packages": [
         {
             "name": "amazon-php/sp-api-sdk",
