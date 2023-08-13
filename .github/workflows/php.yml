@@ -17,6 +17,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
@@ -30,10 +35,7 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
-        tools: composer:v2
       run: composer install --prefer-dist --no-progress
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
