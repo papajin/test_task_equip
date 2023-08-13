@@ -43,25 +43,14 @@ jobs:
     # - name: Run test suite
     #   run: composer run-script test
 
-  build-test:
-    runs-on: ubuntu-20.04
+    - uses: php-actions/composer@v6
 
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-
-      - uses: php-actions/composer@v6
-
-      - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
-        env:
-          ENVIRONMENT: unittest
-        with:
-          bootstrap: tests/bootstrap.php
-          configuration: phpunit.xml
-          args: --coverage-text
-          php_version: "7.4"
+    - name: PHPUnit Tests
+      uses: php-actions/phpunit@v3
+      env:
+        ENVIRONMENT: unittest
+      with:
+        bootstrap: tests/bootstrap.php
+        configuration: phpunit.xml
+        args: --coverage-text
+        php_version: "7.4"
