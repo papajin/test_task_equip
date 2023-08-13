@@ -1,5 +1,6 @@
 {
     "require": {
+        "php": "^7.4",
         "amazon-php/sp-api-sdk": "^4.0",
         "equip/assist": "^1.6.0",
         "equip/command": "^2.0",
