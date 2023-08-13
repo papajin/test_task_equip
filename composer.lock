@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e343d9f1d7de662c87b56905447e2a5",
+    "content-hash": "222c5c9c0ddc83329ca16c0faccfbc1e",
     "packages": [
         {
             "name": "amazon-php/sp-api-sdk",
@@ -2430,16 +2430,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.16.0",
+            "version": "v4.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "19526a33fb561ef417e822e85f08a00db4059c17"
+                "reference": "844c228bf2b34a25ea8fed58f7929d14cf0c068e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/19526a33fb561ef417e822e85f08a00db4059c17",
-                "reference": "19526a33fb561ef417e822e85f08a00db4059c17",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/844c228bf2b34a25ea8fed58f7929d14cf0c068e",
+                "reference": "844c228bf2b34a25ea8fed58f7929d14cf0c068e",
                 "shasum": ""
             },
             "require": {
@@ -2480,9 +2480,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.16.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.17.0"
             },
-            "time": "2023-06-25T14:52:30+00:00"
+            "time": "2023-08-13T14:53:08+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -4115,7 +4115,9 @@
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.4"
+    },
     "platform-dev": {
         "ext-json": "*"
     },

@@ -1,4 +1,6 @@
 {
+    "name": "amazon-test-task-equip",
+    "description": "Test Task that uses Amazon SP API",
     "require": {
         "php": "^7.4",
         "amazon-php/sp-api-sdk": "^4.0",
