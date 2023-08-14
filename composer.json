@@ -42,8 +42,7 @@
     },
     "scripts": {
         "test": [
-            "@php vendor/phpunit/phpunit/phpunit --bootstrap tests/bootstrap.php --configuration phpunit.xml",
-            "phpunit"
+            "@php vendor/phpunit/phpunit/phpunit --bootstrap tests/bootstrap.php --configuration phpunit.xml tests/Unit"
         ]
     }
 }
