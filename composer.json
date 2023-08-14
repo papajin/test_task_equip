@@ -39,5 +39,11 @@
         "allow-plugins": {
             "kylekatarnls/update-helper": true
         }
+    },
+    "scripts": {
+        "test": [
+            "@php vendor/phpunit/phpunit/phpunit --bootstrap tests/bootstrap.php --configuration phpunit.xml",
+            "phpunit"
+        ]
     }
 }
