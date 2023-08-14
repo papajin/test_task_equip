@@ -43,8 +43,6 @@ jobs:
     # - name: Run test suite
     #   run: composer run-script test
 
-    - uses: php-actions/composer@v6
-
     - name: PHPUnit Tests
       uses: php-actions/phpunit@v3
       env:
