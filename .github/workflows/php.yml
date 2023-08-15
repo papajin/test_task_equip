@@ -12,22 +12,21 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     services:
-      nginx:
-        image: nginx
-        # Map port 8080 on the Docker host to port 80 on the nginx container
+      services:
+        image: php:7.4.33-apache-bullseye
         ports:
-          - 8080:80
+          - 80:80
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
+#    - name: Setup PHP
+#      uses: shivammathur/setup-php@v2
+#      with:
+#        php-version: '7.4'
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
