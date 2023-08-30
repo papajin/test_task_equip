@@ -45,3 +45,6 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
+
+    - name: Run PHPStan
+      run: php ./vendor/bin/phpstan analyse src --level max --no-progress
